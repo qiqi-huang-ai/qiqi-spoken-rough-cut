@@ -58,7 +58,7 @@ class RenderTests(unittest.TestCase):
             cmd += ['-c:v', 'libx264', '-pix_fmt', 'yuv420p', str(source)]
             subprocess.run(cmd, check=True)
             before = hashlib.sha256(source.read_bytes()).hexdigest()
-            plan = json.loads((ROOT / 'examples' / 'plan.json').read_text())
+            plan = json.loads((ROOT / 'examples' / 'plan.json').read_text(encoding='utf-8'))
             rows = m.validate_plan(plan, 7)
             info = m.probe(source)
             result = m.render(source, info, rows, output, 4)

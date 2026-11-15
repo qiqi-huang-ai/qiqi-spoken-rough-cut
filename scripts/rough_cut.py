@@ -14,7 +14,8 @@ from pathlib import Path
 
 
 def run(args):
-    return subprocess.run(args, check=True, capture_output=True, text=True).stdout
+    return subprocess.run(args, check=True, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace").stdout
 
 
 def probe(path):
@@ -171,6 +172,8 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
     try:
         sys.exit(main())
     except (ValueError, OSError, subprocess.CalledProcessError) as exc:

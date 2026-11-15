@@ -2,6 +2,7 @@
 """Optional local faster-whisper transcription, no cloud media upload."""
 import argparse
 import json
+import sys
 from pathlib import Path
 
 
@@ -36,4 +37,6 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
     main()
