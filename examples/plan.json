@@ -1,0 +1,7 @@
+{
+  "keep": [
+    {"start": 0.5, "end": 2.5, "reason": "合成测试：保留第一段"},
+    {"start": 4.0, "end": 6.0, "reason": "合成测试：保留第二段"}
+  ],
+  "needs_review": []
+}
