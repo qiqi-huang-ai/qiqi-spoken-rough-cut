@@ -14,8 +14,11 @@ from pathlib import Path
 
 
 def run(args):
-    return subprocess.run(args, check=True, capture_output=True, text=True,
-                          encoding="utf-8", errors="replace").stdout
+    result = subprocess.run(args, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace")
+    if result.returncode:
+        raise ValueError(f"{Path(args[0]).name} 执行失败：{result.stderr.strip()}")
+    return result.stdout
 
 
 def probe(path):
@@ -116,8 +119,11 @@ def render(source, info, rows, output, expected):
     with tempfile.TemporaryDirectory(prefix="rough-cut-") as temp:
         graph = Path(temp) / "filter.txt"
         graph.write_text(";\n".join(filters), encoding="utf-8")
+        # FFmpeg 9 removed the legacy option; older builds still need it.
+        options = run(["ffmpeg", "-hide_banner", "-h", "full"])
+        filter_option = "-filter_complex_script" if "-filter_complex_script" in options else "-/filter_complex"
         cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-n",
-               "-i", str(source), "-filter_complex_script", str(graph), "-map", "[v]"]
+               "-i", str(source), filter_option, str(graph), "-map", "[v]"]
         if has_audio:
             cmd += ["-map", "[a]", "-c:a", "aac", "-b:a", "192k"]
         cmd += ["-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt",
