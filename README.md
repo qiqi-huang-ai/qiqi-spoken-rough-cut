@@ -1,4 +1,6 @@
-# 奇奇口播粗剪 · Qiqi Spoken Rough Cut
+# 口播粗剪 · Spoken Rough Cut
+
+<img src="assets/logo.png" width="128" alt="口播粗剪 Logo：声波与剪刀">
 
 一个面向中文单人口播的 Agent Skill：识别重说、口误、没说完的半句和重录空档，先给你看剪切清单，确认后再输出初剪视频。
 
@@ -14,7 +16,7 @@
 npx skills add qiqi-huang-ai/qiqi-spoken-rough-cut
 ```
 
-按安装器提示选择可用宿主。也可下载 Release 中的通用技能包，解压到宿主的 Skills 目录。WorkBuddy 本地上传请使用 `qiqi-spoken-rough-cut-workbuddy-1.0.0.zip`；它包含 WorkBuddy 展示字段，与通用包使用相同正文和脚本。市场公开上架需另经平台审核，本地导入不代表已上架。
+按安装器提示选择可用宿主。也可下载 Release 中的通用技能包，解压到宿主的 Skills 目录。WorkBuddy 本地上传请使用 `qiqi-spoken-rough-cut-workbuddy-1.0.1.zip`；它包含 WorkBuddy 展示字段，与通用包使用相同正文和脚本。市场公开上架需另经平台审核，本地导入不代表已上架。
 
 ## 这样使用
 
